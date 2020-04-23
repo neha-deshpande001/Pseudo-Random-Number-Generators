@@ -1,67 +1,54 @@
 #define _USE_MATH_DEFINES
 
-#include "matplotlibcpp.h"
+#include "matplotlibcpp.h" // graphing
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <cmath>
-#include <random>
+#include <random> // C++ generators
 #include <map>
 #include <unordered_map>
 
 namespace plt = matplotlibcpp;
 
-//compile: g++ PRNG.cpp -std=c++11 -I/usr/include/python2.7 -lpython2.7
-//run: ./a.out [numTests] [type] [seed]
-
-/*
-numTests
--integer
-
-type
--rand
--uniform_int_distribution
-
-seed
--time
--integer >0
-*/
+// this function calculates the chi squared value for a given vector of data points.
 double calculate_chi_squared(std::vector<int> observed, double expected){
 	double sum = 0;
 	for(int i = 0; i < 10; i++){
 		sum+=(((double)observed[i] - expected) * ((double)observed[i] - expected)) / expected;
-	}
+	} // The expected value should always be the same because we are expecting a uniform distribution.
 	return sum;
 }
 
+// generate random numbers using the rand function and add them to the map
 void calculate_using_rand(std::map<int,int> &counts, int numTests, unsigned int seed){
-	srand(seed);
+	srand(seed); // set the seed value
 	for(int i = 0; i < numTests; i++){
+		// gets the last digit of each number - not the best way to use this generator, but sufficient for our purposes
 		counts[rand()%10]++;
 	}
 }
 
+// generate random numbers using the uniform_int_distribution function and add them to the map
 void calculate_using_uniform_int(std::map<int,int> &counts, int numTests, unsigned int seed){
-	std::default_random_engine generator( seed );
-	std::uniform_int_distribution<int> distribution(0,9);
+	std::default_random_engine generator( seed ); // set the seed value
+	std::uniform_int_distribution<int> distribution(0,9); // min=0, max=9. We can do this because the generator produces integers.
 	for(int i = 0; i < numTests; i++){
-		counts[distribution(generator)]++;
+		counts[distribution(generator)]++; // adds each random digit to the map
 	}
-
 }
 
 int main(int argc, char **argv) {
 
-	// unordered map with command line argument and the official name
+	// unordered map with command line argument and the official name for printing statistics
 	std::unordered_map<std::string, std::string> PRNGnames {
 		{"rand","C++ rand"},
 		{"uniform_int_distribution", "C++ uniform_int_distribution"}
 	};
-	//TODO: make this an unordered_map<std::string, std::set<std::string, function> >
-	// so that we can call the calculate function from here rather than having an if statement later on
-	// void pointer(? do more research)
 
 	//initialize the map values to 0
+	//counts->first is the generated number
+	//counts->second is the number of occurences
 	std::map<int, int> counts {
 		{0,0},
 		{1,0},
@@ -100,6 +87,7 @@ int main(int argc, char **argv) {
 		calculate_using_uniform_int(counts,numTests,seed);
 	}
 
+	//print out data using the generator's official name
 	std::string official_name = PRNGnames[argv[2]];
 	std::cout << "Using " << official_name << ". The random number seed is " << seed << ". Running " << numTests << " tests." << std::endl;
 
@@ -112,7 +100,7 @@ int main(int argc, char **argv) {
 
 	// PLOT STYLING HERE
 
-    plt::figure_size(1200, 780);
+    plt::figure_size(1200, 780); // size of the graph
 
     plt::bar(data); //we want to plot a bar graph with the random number data
 
@@ -162,8 +150,6 @@ int main(int argc, char **argv) {
    	double chi_squared = calculate_chi_squared(data,numTests/10.0);
    	if(chi_squared > critical_value) good_or_bad = "bad";
 
-   	// print PRNG statistics
-
    	//			 chi^2 unicode
 	std::cout << "\u03A7\u00B2 = " << chi_squared << std::endl;
 	std::cout << "A good generator's \u03A7\u00B2 should be below " << critical_value << "." << std::endl;
@@ -179,33 +165,3 @@ int main(int argc, char **argv) {
 
     return (0);
 }
-
-
-
-/*
-TODO:
--maybe have chi^2 info on the side of the graphs
--void pointer for efficiency
--do this for many PRNGs
-	-homemade!
-	-other C++ generators
-	-KISS algorithm
-	-atmospheric noise from random.org (would be interesting but more difficult)- http://www.random.org/clients/http/
--clean up comments
--update README
--make this todo list into issues on github
-*/
-
-/*
-How this works:
-1. run the test 1000 times - num %10 -> [0,9]
-2. count how many times each number appears
-3. graph- ideally, it should be a uniform distribution
-4. chi squared test - if p is below 0.05, the die is not balanced
-
-Do this for many PRNGs
-	-C++ rand with seed 1
-	-C++ rand with seed time
-	-KISS algorithm
-*/
- 
