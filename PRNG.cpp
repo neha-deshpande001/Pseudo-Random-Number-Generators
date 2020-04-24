@@ -142,8 +142,7 @@ int main(int argc, char **argv) {
 
 	// CALCULATE & PRINT STATISTICS HERE
 
-    //degrees of freedom = 10-1=9, alpha value = 0.5
-    // so, critical value = 16.919
+    //degrees of freedom = 10-1=9, alpha value = 0.05; so, critical value = 16.919
     double critical_value = 16.919; // see README for more information
     std::string good_or_bad = "good";
 
