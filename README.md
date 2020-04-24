@@ -35,7 +35,6 @@ For this project, I wanted to see how efficient each pseudo-random number genera
 After graphing the numbers, we can perform a statistical analysis of the results. We need to perform a chi-squared test using the expected number of times for a number of be generated and the actual number of times the number was generated. We know that we have 9 degrees of freedom in this test, and we set the alpha value to 0.05. This means that the critical value is 16.919. Now, we can compare the chi-squared statistic to the critical value. If the chi-squared statistic is below 16.919, that means the generator is good, and whatever slight differents between that data and a uniform distribution can be accounted for by random variations. However, if the chi-squared statistic is above 16.919, that means that the generator does not produce good results, and is therefore bad.
 
 ## Demonstration and Analysis
-Insert sample command line arguments, cout results, and graphs for each generator that we have programmed. Determine if the generator is good or not.
 
 ### C++ rand
 
