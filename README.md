@@ -39,11 +39,26 @@ Insert sample command line arguments, cout results, and graphs for each generato
 
 ### C++ rand
 
-add pictures, cout results, and determine if the generator is good
+|  | 100 Numbers |
+| :---:|:---:|
+| Graph   | <img src="graphs/C++_rand__tests-100__seed-1587700084.png" width="410"> |
+| Statistics| Using C++ rand. The random number seed is 1587700084. Running 100 tests.<br/>Χ² = 16.6<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 16.600.<br/>Based on this test, the C++ rand is a good generator.|
+
+|  | 10,000 Numbers |
+| :---:|:---:|
+| Graph   | <img src="graphs/C++_rand__tests-10000__seed-1587700103.png" width="410"> |
+| Statistics| Using C++ rand.<br/>The random number seed is 1587700103. Running 10000 tests.<br/>Χ² = 9.342<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.342.<br/>Based on this test, the C++ rand is a good generator.|
 
 ### C++ uniform_int_distribution
+|  | 100 Numbers |
+| :---:|:---:|
+| Graph   | <img src="graphs/C++_uniform_int_distribution__tests-100__seed-1587700112.png" width="410"> |
+| Statistics| Using C++ uniform_int_distribution. The random number seed is 1587700112. Running 100 tests.<br/>Χ² = 7<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.000.<br/>Based on this test, the C++ uniform_int_distribution is a good generator.|
 
-add pictures, cout results, and determine if the generator is good
+|  | 10,000 Numbers |
+| :---:|:---:|
+| Graph   | <img src="graphs/C++_uniform_int_distribution__tests-10000__seed-1587700126.png" width="410"> |
+| Statistics| Using C++ uniform_int_distribution. The random number seed is 1587700126. Running 10000 tests.<br/>Χ² = 12.066<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 12.066.<br/>Based on this test, the C++ uniform_int_distribution is a good generator.|
 
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
