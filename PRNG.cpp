@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
 
 	//print out data using the generator's official name
 	std::string official_name = PRNGnames[argv[2]];
-	std::cout << "Using " << official_name << ". The random number seed is " << seed << ". Running " << numTests << " tests." << std::endl;
+	std::cout << "Using " << official_name << ".\nThe random number seed is " << seed << ".\nRunning " << numTests << " tests." << std::endl;
 
 	//convert the data from a map to a vector for graphing
 	std::vector<int> data;
@@ -150,7 +150,7 @@ int main(int argc, char **argv) {
    	if(chi_squared > critical_value) good_or_bad = "bad";
 
    	//			 chi^2 unicode
-	std::cout << "\u03A7\u00B2 = " << chi_squared << std::endl;
+	std::cout << "\u03A7\u00B2 = " << chi_squared << "." << std::endl;
 	std::cout << "A good generator's \u03A7\u00B2 should be below " << critical_value << "." << std::endl;
 	std::cout.precision(3);
 	std::cout << "This generator's \u03A7\u00B2 is " << std::fixed << chi_squared << "." << std::endl;
