@@ -48,7 +48,7 @@ Insert sample command line arguments, cout results, and graphs for each generato
 
 |  | 100 Numbers | 10,000 Numbers |
 | :---: | :---: | :---: |
-| Graph   | <img src="graphs/C++_rand__tests-100__seed-1587700084.png" width="700"> |<img src="graphs/C++_rand__tests-10000__seed-1587700103.png" width="700"> |
+| Graph   | <img src="graphs/C++_uniform_int_distribution__tests-100__seed-1587700112.png" width="700"> |<img src="graphs/C++_uniform_int_distribution__tests-10000__seed-1587700126.png" width="700"> |
 | Statistics| Using C++ uniform_int_distribution.<br/>The random number seed is 1587700112.<br/>Running 100 tests.<br/>Χ² = 7.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.000.<br/>Based on this test, the C++ uniform_int_distribution is a good generator. | Using C++ uniform_int_distribution.<br/>The random number seed is 1587700126.<br/>Running 10000 tests.<br/>Χ² = 12.066.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 12.066.<br/>Based on this test, the C++ uniform_int_distribution is a good generator. |
 
 ## Installation and Running Instructions
