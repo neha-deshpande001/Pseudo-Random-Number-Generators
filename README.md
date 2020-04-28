@@ -35,30 +35,28 @@ For this project, I wanted to see how efficient each pseudo-random number genera
 After graphing the numbers, we can perform a statistical analysis of the results. We need to perform a chi-squared test using the expected number of times for a number of be generated and the actual number of times the number was generated. We know that we have 9 degrees of freedom in this test, and we set the alpha value to 0.05. This means that the critical value is 16.919. Now, we can compare the chi-squared statistic to the critical value. If the chi-squared statistic is below 16.919, that means the generator is good, and whatever slight differents between that data and a uniform distribution can be accounted for by random variations. However, if the chi-squared statistic is above 16.919, that means that the generator does not produce good results, and is therefore bad.
 
 ## Demonstration and Analysis
-Insert sample command line arguments, cout results, and graphs for each generator that we have programmed. Determine if the generator is good or not.
 
 ### C++ rand
 
-|  | 100 Numbers |
-| :---:|:---:|
-| Graph   | <img src="graphs/C++_rand__tests-100__seed-1587700084.png" width="410"> |
-| Statistics| Using C++ rand. The random number seed is 1587700084. Running 100 tests.<br/>Χ² = 16.6<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 16.600.<br/>Based on this test, the C++ rand is a good generator.|
-
-|  | 10,000 Numbers |
-| :---:|:---:|
-| Graph   | <img src="graphs/C++_rand__tests-10000__seed-1587700103.png" width="410"> |
-| Statistics| Using C++ rand.<br/>The random number seed is 1587700103. Running 10000 tests.<br/>Χ² = 9.342<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.342.<br/>Based on this test, the C++ rand is a good generator.|
+|  | 100 Numbers | 10,000 Numbers |
+| :---: | :---: | :---: |
+| Graph   | <img src="graphs/C++_rand__tests-100__seed-1587700084.png" width="700"> |<img src="graphs/C++_rand__tests-10000__seed-1587700103.png" width="700"> |
+| Statistics| Using C++ rand.<br/>The random number seed is 1587700084.<br/>Running 100 tests.<br/>Χ² = 16.6.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 16.600.<br/>Based on this test, the C++ rand is a good generator. | Using C++ rand.<br/>The random number seed is 1587700103.<br/>Running 10000 tests.<br/>Χ² = 9.342.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.342.<br/>Based on this test, the C++ rand is a good generator.|
 
 ### C++ uniform_int_distribution
-|  | 100 Numbers |
-| :---:|:---:|
-| Graph   | <img src="graphs/C++_uniform_int_distribution__tests-100__seed-1587700112.png" width="410"> |
-| Statistics| Using C++ uniform_int_distribution. The random number seed is 1587700112. Running 100 tests.<br/>Χ² = 7<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.000.<br/>Based on this test, the C++ uniform_int_distribution is a good generator.|
 
-|  | 10,000 Numbers |
-| :---:|:---:|
-| Graph   | <img src="graphs/C++_uniform_int_distribution__tests-10000__seed-1587700126.png" width="410"> |
-| Statistics| Using C++ uniform_int_distribution. The random number seed is 1587700126. Running 10000 tests.<br/>Χ² = 12.066<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 12.066.<br/>Based on this test, the C++ uniform_int_distribution is a good generator.|
+|  | 100 Numbers | 10,000 Numbers |
+| :---: | :---: | :---: |
+| Graph   | <img src="graphs/C++_uniform_int_distribution__tests-100__seed-1587700112.png" width="700"> |<img src="graphs/C++_uniform_int_distribution__tests-10000__seed-1587700126.png" width="700"> |
+| Statistics| Using C++ uniform_int_distribution.<br/>The random number seed is 1587700112.<br/>Running 100 tests.<br/>Χ² = 7.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.000.<br/>Based on this test, the C++ uniform_int_distribution is a good generator. | Using C++ uniform_int_distribution.<br/>The random number seed is 1587700126.<br/>Running 10000 tests.<br/>Χ² = 12.066.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 12.066.<br/>Based on this test, the C++ uniform_int_distribution is a good generator. |
+
+
+### C++ discrete_distribution
+
+|  | 100 Numbers | 10,000 Numbers |
+| :---: | :---: | :---: |
+| Graph   | <img src="graphs/C++_discrete_distribution__tests-100__seed-1588052126.png" width="700"> |<img src="graphs/C++_discrete_distribution__tests-10000__seed-1588052122.png" width="700"> |
+| Statistics| Using C++ discrete_distribution.<br/>The random number seed is 1588052126.<br/>Running 100 tests.<br/>Χ² = 7.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.000.<br/>Based on this test, the C++ discrete_distribution is a good generator. | Using C++ discrete_distribution.<br/>The random number seed is 1588052122.<br/>Running 10000 tests.<br/>Χ² = 9.582.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.582.<br/>Based on this test, the C++ discrete_distribution is a good generator. |
 
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
@@ -77,6 +75,7 @@ where:
 - [type] is the type of PRNG to use to perform those tests. The types that are supported as of 4/34/2020 are:
   - "rand"
   - "uniform_int_distribution"
+  - "discrete_distribution"
 - [seed] is the initial seed to use in the generator. The seed can be:
   - "time"
   - an integer number

@@ -30,7 +30,7 @@ void calculate_using_rand(std::map<int,int> &counts, int numTests, unsigned int 
 }
 
 // generate random numbers using the uniform_int_distribution function and add them to the map
-void calculate_using_uniform_int(std::map<int,int> &counts, int numTests, unsigned int seed){
+void calculate_using_uniform_int_distribution(std::map<int,int> &counts, int numTests, unsigned int seed){
 	std::default_random_engine generator( seed ); // set the seed value
 	std::uniform_int_distribution<int> distribution(0,9); // min=0, max=9. We can do this because the generator produces integers.
 	for(int i = 0; i < numTests; i++){
@@ -38,12 +38,24 @@ void calculate_using_uniform_int(std::map<int,int> &counts, int numTests, unsign
 	}
 }
 
+// generate random numbers using the discrete_distribution function and add them to the map
+void calculate_using_discrete_distribution(std::map<int,int> &counts, int numTests, unsigned int seed){
+	std::default_random_engine generator( seed ); // set the seed value
+	std::discrete_distribution<int> distribution {1,1,1,1,1,1,1,1,1,1}; // the probability of generating the numbers between 0-9 is equal
+	for(int i = 0; i < numTests; i++){
+		counts[distribution(generator)]++; // adds each random digit to the map
+	}
+}
+
+
+
 int main(int argc, char **argv) {
 
 	// unordered map with command line argument and the official name for printing statistics
 	std::unordered_map<std::string, std::string> PRNGnames {
 		{"rand","C++ rand"},
-		{"uniform_int_distribution", "C++ uniform_int_distribution"}
+		{"uniform_int_distribution", "C++ uniform_int_distribution"},
+		{"discrete_distribution", "C++ discrete_distribution"}
 	};
 
 	//initialize the map values to 0
@@ -84,12 +96,15 @@ int main(int argc, char **argv) {
 		calculate_using_rand(counts,numTests,seed);
 	}
 	else if(argv[2] == std::string("uniform_int_distribution")){
-		calculate_using_uniform_int(counts,numTests,seed);
+		calculate_using_uniform_int_distribution(counts,numTests,seed);
+	}
+	else if(argv[2] == std::string("discrete_distribution")){
+		calculate_using_discrete_distribution(counts,numTests,seed);
 	}
 
 	//print out data using the generator's official name
 	std::string official_name = PRNGnames[argv[2]];
-	std::cout << "Using " << official_name << ". The random number seed is " << seed << ". Running " << numTests << " tests." << std::endl;
+	std::cout << "Using " << official_name << ".\nThe random number seed is " << seed << ".\nRunning " << numTests << " tests." << std::endl;
 
 	//convert the data from a map to a vector for graphing
 	std::vector<int> data;
@@ -150,7 +165,7 @@ int main(int argc, char **argv) {
    	if(chi_squared > critical_value) good_or_bad = "bad";
 
    	//			 chi^2 unicode
-	std::cout << "\u03A7\u00B2 = " << chi_squared << std::endl;
+	std::cout << "\u03A7\u00B2 = " << chi_squared << "." << std::endl;
 	std::cout << "A good generator's \u03A7\u00B2 should be below " << critical_value << "." << std::endl;
 	std::cout.precision(3);
 	std::cout << "This generator's \u03A7\u00B2 is " << std::fixed << chi_squared << "." << std::endl;
