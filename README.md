@@ -50,6 +50,13 @@ After graphing the numbers, we can perform a statistical analysis of the results
 | Graph   | <img src="graphs/C++_uniform_int_distribution__tests-100__seed-1587700112.png" width="700"> |<img src="graphs/C++_uniform_int_distribution__tests-10000__seed-1587700126.png" width="700"> |
 | Statistics| Using C++ uniform_int_distribution.<br/>The random number seed is 1587700112.<br/>Running 100 tests.<br/>Χ² = 7.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.000.<br/>Based on this test, the C++ uniform_int_distribution is a good generator. | Using C++ uniform_int_distribution.<br/>The random number seed is 1587700126.<br/>Running 10000 tests.<br/>Χ² = 12.066.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 12.066.<br/>Based on this test, the C++ uniform_int_distribution is a good generator. |
 
+### C++ discrete_distribution
+
+|  | 100 Numbers | 10,000 Numbers |
+| :---: | :---: | :---: |
+| Graph   | <img src="graphs/C++_discrete_distribution__tests-100__seed-1588052744.png" width="700"> |<img src="graphs/C++_discrete_distribution__tests-10000__seed-1588052748.png" width="700"> |
+| Statistics| Using C++ discrete_distribution.<br/>The random number seed is 1588052744.<br/>Running 100 tests.<br/>Χ² = 9.2.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.200.<br/>Based on this test, the C++ discrete_distribution is a good generator. | Using C++ discrete_distribution.<br/>The random number seed is 1588052748.<br/>Running 10000 tests.<br/>Χ² = 10.67.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 10.670.<br/>Based on this test, the C++ discrete_distribution is a good generator. |
+
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
 
@@ -67,6 +74,7 @@ where:
 - [type] is the type of PRNG to use to perform those tests. The types that are supported as of 4/34/2020 are:
   - "rand"
   - "uniform_int_distribution"
+  - "discrete_distribution"
 - [seed] is the initial seed to use in the generator. The seed can be:
   - "time"
   - an integer number
