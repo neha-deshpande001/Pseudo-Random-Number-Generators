@@ -55,8 +55,8 @@ After graphing the numbers, we can perform a statistical analysis of the results
 
 |  | 100 Numbers | 10,000 Numbers |
 | :---: | :---: | :---: |
-| Graph   | <img src="graphs/C++_discrete_distribution__tests-100__seed-1588052126.png" width="700"> |<img src="graphs/C++_discrete_distribution__tests-10000__seed-1588052122.png" width="700"> |
-| Statistics| Using C++ discrete_distribution.<br/>The random number seed is 1588052126.<br/>Running 100 tests.<br/>Χ² = 7.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.000.<br/>Based on this test, the C++ discrete_distribution is a good generator. | Using C++ discrete_distribution.<br/>The random number seed is 1588052122.<br/>Running 10000 tests.<br/>Χ² = 9.582.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.582.<br/>Based on this test, the C++ discrete_distribution is a good generator. |
+| Graph   | <img src="graphs/C++_discrete_distribution__tests-100__seed-1588052744.png" width="700"> |<img src="graphs/C++_discrete_distribution__tests-10000__seed-1588052748.png" width="700"> |
+| Statistics| Using C++ discrete_distribution.<br/>The random number seed is 1588052744.<br/>Running 100 tests.<br/>Χ² = 9.2.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.200.<br/>Based on this test, the C++ discrete_distribution is a good generator. | Using C++ discrete_distribution.<br/>The random number seed is 1588052748.<br/>Running 10000 tests.<br/>Χ² = 10.67.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 10.670.<br/>Based on this test, the C++ discrete_distribution is a good generator. |
 
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
