@@ -9,6 +9,7 @@
 #include <map>
 #include <unordered_map>
 
+//hello sneha is here
 namespace plt = matplotlibcpp;
 
 // this function calculates the chi squared value for a given vector of data points.
