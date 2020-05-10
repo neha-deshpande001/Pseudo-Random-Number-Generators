@@ -6,7 +6,11 @@ I have always been fascinated with the idea of "random" and how computer program
 
 After doing some research, I realized that this is a largely-studied field in computer science. One inuitive way to determine if a pseudo-random number generator is good is to use the chi-squared test. In actually testing the generator, I would perform a chi-squared test and then graph the data. I also decided to test some other generators including generators in the C++ random library. This respository aims to test just how random these pseudo-random number generators are.
 
-In coding this project, I gained a much deeper understanding of pseudo-random number generators and how they work. I was able to apply statistics that I have learned in school. I also was able to become more conversant in using the matplotlib-cpp library to graph data.
+In creating this project, I gained a much deeper understanding in the following aspects of computer science:
+- Pseudo-random number generators
+- Using the matplotlib-cpp library to graph data
+- Function pointers and various data structures in C++
+- Applying statistics that I learned in school to a real project
 
 ## Background
 
@@ -30,7 +34,7 @@ For this project, the PRNG is good if its chi-squared statistic is below 16.919.
 
 ### This Project
 
-For this project, I wanted to see how efficient each pseudo-random number generator is, and graph the results. To do this, we first determine which generator to use, the number of tests to run, and the seed; we get all this information from the command line arguments. Then, we get many random numbers from the generator and store those results in a map with keys from 0 to 9. For generators that do not return a number from 0 to 9, we use the modulus operator. Offcially, the modulus operator does not truly analyze the randomness of the number, but for our purposes, this method works. Then, we convert the map to a vector and create a bar graph with the frequency of the numbers using matplotlib-cpp. Using that library, there are many style aspects that we can change, and then save it as a png file.
+For this project, I wanted to see how efficient each pseudo-random number generator is, and graph the results. To do this, we first determine which generator to use, the number of tests to run, and the seed; we get all this information from the command line arguments. Then, using function pointers that correspond to the selected generator, we run a function that generates many random numbers. Then, the function stores those results in a vector with indicies from 0 to 9. For generators that do not return a number from 0 to 9, we use the modulus operator. Offcially, the modulus operator does not truly analyze the randomness of the number, but for our purposes, this method works. Then, we use the vector to create a bar graph with the frequency of the numbers using matplotlib-cpp. We use that library for styling the graph, then save it as a .png file.
 
 After graphing the numbers, we can perform a statistical analysis of the results. We need to perform a chi-squared test using the expected number of times for a number of be generated and the actual number of times the number was generated. We know that we have 9 degrees of freedom in this test, and we set the alpha value to 0.05. This means that the critical value is 16.919. Now, we can compare the chi-squared statistic to the critical value. If the chi-squared statistic is below 16.919, that means the generator is good, and whatever slight differents between that data and a uniform distribution can be accounted for by random variations. However, if the chi-squared statistic is above 16.919, that means that the generator does not produce good results, and is therefore bad.
 
