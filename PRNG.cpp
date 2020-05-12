@@ -1,6 +1,8 @@
 #define _USE_MATH_DEFINES
 
 #include "matplotlibcpp.h" // graphing
+#include "neha_generator.h" // homemade generators
+#include "crappy_generator.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -14,7 +16,7 @@ namespace plt = matplotlibcpp;
 
 /*
 compile:
-g++ PRNG.cpp -std=c++11 -I/usr/include/python2.7 -lpython2.7
+g++ *.cpp -std=c++11 -I/usr/include/python2.7 -lpython2.7
 
 run:
 ./a.out [numTests] [type] [seed]
@@ -29,6 +31,7 @@ double calculate_chi_squared(vector<int> observed, double expected){
 	return sum;
 }
 
+
 // generate random numbers using the rand function and add them to the vector
 void calculate_using_rand(vector<int> &data, int numTests, unsigned int seed){
 	srand(seed); // set the seed value
@@ -40,7 +43,7 @@ void calculate_using_rand(vector<int> &data, int numTests, unsigned int seed){
 
 // generate random numbers using the uniform_int_distribution function and add them to the vector
 void calculate_using_uniform_int_distribution(vector<int> &data, int numTests, unsigned int seed){
-	default_random_engine generator( seed ); // set the seed value
+	default_random_engine generator(seed); // set the seed value
 	uniform_int_distribution<int> distribution(0,9); // min=0, max=9. We can do this because the generator produces integers.
 	for(int i = 0; i < numTests; i++){
 		data[distribution(generator)]++; // adds each random digit to the vector
@@ -49,10 +52,26 @@ void calculate_using_uniform_int_distribution(vector<int> &data, int numTests, u
 
 // generate random numbers using the discrete_distribution function and add them to the vector
 void calculate_using_discrete_distribution(vector<int> &data, int numTests, unsigned int seed){
-	default_random_engine generator( seed ); // set the seed value
+	default_random_engine generator(seed); // set the seed value
 	discrete_distribution<int> distribution {1,1,1,1,1,1,1,1,1,1}; // the probability of generating the numbers 0-9 is equal
 	for(int i = 0; i < numTests; i++){
 		data[distribution(generator)]++; // adds each random digit to the vector
+	}
+}
+
+// generate random numbers using Neha Deshpande's homemade generator and add them to the vector
+void calculate_using_neha_generator(vector<int> &data, int numTests, unsigned int seed){
+	neha_generator generator(seed);
+	for(int i = 0; i < numTests; i++){
+		data[generator.random_number()]++; // adds each random digit to the vector
+	}
+}
+
+// generate random numbers using the crappy, predictable generator and add them to the vector
+void calculate_using_crappy_generator(vector<int> &data, int numTests, unsigned int seed){
+	crappy_generator generator(seed);
+	for(int i = 0; i < numTests; i++){
+		data[generator.random_number()]++; // adds each random digit to the vector
 	}
 }
 
@@ -64,15 +83,17 @@ int main(int argc, char **argv) {
 	// This is complicated - it is a map, with the unofficial name string as the key and a pair as the value.
 	// The pair has the official name string as first and a function pointer as a second.
 	// The function pointer points to a void function with arguments below. All the functions should have this format
-	unordered_map<string, pair<string, void (*)(vector<int,int>&, int, unsigned int)> > PRNGs {
+	unordered_map<string, pair<string, void (*)(vector<int>&, int, unsigned int)> > PRNGs = {
 		{"rand", make_pair("C++ rand", calculate_using_rand) },
 		{"uniform_int_distribution", make_pair("C++ uniform_int_distribution", calculate_using_uniform_int_distribution) },
-		{"discrete_distribution", make_pair("C++ discrete_distribution", calculate_using_discrete_distribution) }
+		{"discrete_distribution", make_pair("C++ discrete_distribution", calculate_using_discrete_distribution) },
+		{"neha_generator", make_pair("Neha Deshpande's Homemade PRNG", calculate_using_neha_generator) },
+		{"crappy_generator", make_pair("Crappy Homemade PRNG", calculate_using_crappy_generator) }
 	};
 
 	//initialize the map values to 0
-	//index is the generated number
-	//vector[index] is the number of occurrences of that number
+	//the index is the generated number
+	//data[index] is the number of occurrences of that number
     vector<int> data(10, 0); 
 
 
@@ -162,7 +183,7 @@ int main(int argc, char **argv) {
 	cout << "A good generator's \u03A7\u00B2 should be below " << critical_value << "." << endl;
 	cout.precision(3);
 	cout << "This generator's \u03A7\u00B2 is " << fixed << chi_squared << "." << endl;
-	cout << "Based on this test, the " << official_name << " is a " << good_or_bad << " generator." << endl;
+	cout << "Based on this test, " << official_name << " is a " << good_or_bad << " generator." << endl;
 
 
 	//SAVE FILE
