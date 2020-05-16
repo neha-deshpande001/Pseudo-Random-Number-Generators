@@ -1,23 +1,15 @@
 // File: neha_generator.h
+#ifndef N_H
+#define N_H
 
+#include "homemade_generator.h"
 
-class neha_generator {
+class neha_generator : public homemade_generator {
 public:
-	// CONSTRUCTOR
-				// default parameter - seed = 1
-	neha_generator(int seed = 1);
+    // default value for seed is 1
+    neha_generator(int seed = 1) : homemade_generator(seed){}; // constructor calls superclass's constructor
 
-	// ACCESSORS
-	int random_number();
-	int get_seed() const;
+    int random_number(); // this is the only function that is different from the superclass
 
-	// MODIFIERS
-	void set_seed(int seed);
-
-	// OTHER
-	int numDigits(int num) const;
-
-private: // REPRESENTATION (member variables)
-	int seed;
-	int current;
 };
+#endif

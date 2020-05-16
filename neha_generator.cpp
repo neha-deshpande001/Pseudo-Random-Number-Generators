@@ -3,13 +3,6 @@
 #include "neha_generator.h"
 #include <math.h>
 
-// CONSTRUCTOR
-neha_generator::neha_generator(int seed){
-	this->seed = seed;
-	current = seed;
-}
-
-// ACCESSORS
 int neha_generator::random_number(){
 	if(current == 0){
 		current += 1;
@@ -26,29 +19,10 @@ int neha_generator::random_number(){
 	}
 
 	int random_number = current;
-	current = current * 9;
+	current*=9;
 	random_number/=10;
-	random_number%=10;
+	random_number%=10; // take middle of the three digits
 
 	return random_number;
 
-}
-
-int neha_generator::get_seed() const{
-	return seed;
-}
-
-// MODIFIERS
-void neha_generator::set_seed(int seed){
-	this->seed = seed;
-}
-
-// OTHER
-int neha_generator::numDigits(int num) const{
-	int digits = 1;
-	while(num > 9){
-		num/=10;
-		digits++;
-	}
-	return digits;
 }

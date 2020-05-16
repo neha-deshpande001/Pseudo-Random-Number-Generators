@@ -1,7 +1,9 @@
 #define _USE_MATH_DEFINES
 
+
 #include "matplotlibcpp.h" // graphing
 #include "neha_generator.h" // homemade generators
+#include "homemade_generator.h"
 #include "crappy_generator.h"
 #include <iostream>
 #include <iomanip>

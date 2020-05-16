@@ -3,42 +3,23 @@
 #include "crappy_generator.h"
 #include <math.h>
 
-// CONSTRUCTOR
-crappy_generator::crappy_generator(int seed){
-	this->seed = seed;
-	current = seed;
-}
+//implementation of the crappy generator
+// starts with the least significant digit of the seed
+// adds 1 each time, if the number is greater than 9, makes the number 0
+//This generator is very, VERY predictable, the numbers are not at all random.
+//However, this is one of the cases where the chi-squared test shows a false positive, meaning
+//it shows perfectly uniform distribution, but it is an AWFUL random number generator.
 
-// ACCESSORS
 int crappy_generator::random_number(){
-	while(numDigits(current) > 1){ // make current 1 digit
-		current%=10;
-	}
+    while(numDigits(current) > 1){ // make current 1 digit
+        current%=10;
+    }
 
-	int random_number = current;
-	current++;
-	if(current == 10){
-		current = 0;
-	}
+    int random_number = current;
+    current++;
+    if(current == 10){
+        current = 0;
+    }
 
-	return random_number;
-}
-
-int crappy_generator::get_seed() const{
-	return seed;
-}
-
-// MODIFIERS
-void crappy_generator::set_seed(int seed){
-	this->seed = seed;
-}
-
-// OTHER
-int crappy_generator::numDigits(int num) const{
-	int digits = 1;
-	while(num > 9){
-		num/=10;
-		digits++;
-	}
-	return digits;
+    return random_number;
 }
