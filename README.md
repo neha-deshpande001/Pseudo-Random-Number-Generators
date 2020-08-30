@@ -30,7 +30,7 @@ For this project, the PRNG is good if its chi-squared statistic is below 16.919.
 
 ### This Project
 
-For this project, I wanted to see how efficient each pseudo-random number generator is, and graph the results. To do this, we first determine which generator to use, the number of tests to run, and the seed; we get all this information from the command line arguments. Then, we get many random numbers from the generator and store those results in a map with keys from 0 to 9. For generators that do not return a number from 0 to 9, we use the modulus operator. Offcially, the modulus operator does not truly analyze the randomness of the number, but for our purposes, this method works. Then, we convert the map to a vector and create a bar graph with the frequency of the numbers using matplotlib-cpp. Using that library, there are many style aspects that we can change, and then save it as a png file.
+For this project, I wanted to see how efficient each pseudo-random number generator is, and graph the results. To do this, we first determine which generator to use, the number of tests to run, and the seed; we get all this information from the command line arguments. Then, we get many random numbers from the generator and store those results in a map with keys from 0 to 9. For generators that do not return a number from 0 to 9, we use the modulus operator. Officially, the modulus operator does not truly analyze the randomness of the number, but for our purposes, this method works. Then, we convert the map to a vector and create a bar graph with the frequency of the numbers using matplotlib-cpp. Using that library, there are many style aspects that we can change, and then save it as a png file.
 
 After graphing the numbers, we can perform a statistical analysis of the results. We need to perform a chi-squared test using the expected number of times for a number of be generated and the actual number of times the number was generated. We know that we have 9 degrees of freedom in this test, and we set the alpha value to 0.05. This means that the critical value is 16.919. Now, we can compare the chi-squared statistic to the critical value. If the chi-squared statistic is below 16.919, that means the generator is good, and whatever slight differents between that data and a uniform distribution can be accounted for by random variations. However, if the chi-squared statistic is above 16.919, that means that the generator does not produce good results, and is therefore bad.
 
@@ -56,6 +56,13 @@ After graphing the numbers, we can perform a statistical analysis of the results
 | :---: | :---: | :---: |
 | Graph   | <img src="graphs/C++_discrete_distribution__tests-100__seed-1588052744.png" width="700"> |<img src="graphs/C++_discrete_distribution__tests-10000__seed-1588052748.png" width="700"> |
 | Statistics| Using C++ discrete_distribution.<br/>The random number seed is 1588052744.<br/>Running 100 tests.<br/>Χ² = 9.2.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.200.<br/>Based on this test, the C++ discrete_distribution is a good generator. | Using C++ discrete_distribution.<br/>The random number seed is 1588052748.<br/>Running 10000 tests.<br/>Χ² = 10.67.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 10.670.<br/>Based on this test, the C++ discrete_distribution is a good generator. |
+
+### C++ piecewise_constant_distribution
+
+|  | 100 Numbers | 10,000 Numbers |
+| :---: | :---: | :---: |
+| Graph   | <img src="graphs/C++_piecewise_constant_distribution__tests-100__seed-1598786124.png" width="700"> |<img src="graphs/C++_piecewise_constant_distribution__tests-1000__seed-1598786129.png" width="700"> |
+| Statistics| Using C++ piecewise_constant_distribution.<br/>The random number seed is 1598786124.<br/>Running 100 tests.<br/>Χ² = 7.6.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.600.<br/>Based on this test, the C++ piecewise_constant_distribution is a good generator. | Using C++ piecewise_constant_distribution.<br/>The random number seed is 1598786129.<br/>Running 1000 tests.<br/>Χ² = 6.4.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 6.400.<br/>Based on this test, the C++ piecewise_constant_distribution is a good generator. |
 
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
