@@ -61,12 +61,26 @@ After graphing the numbers, we can perform a statistical analysis of the results
 | Graph   | <img src="graphs/C++_discrete_distribution__tests-100__seed-1588052744.png" width="700"> |<img src="graphs/C++_discrete_distribution__tests-10000__seed-1588052748.png" width="700"> |
 | Statistics| Using C++ discrete_distribution.<br/>The random number seed is 1588052744.<br/>Running 100 tests.<br/>Χ² = 9.2.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 9.200.<br/>Based on this test, the C++ discrete_distribution is a good generator. | Using C++ discrete_distribution.<br/>The random number seed is 1588052748.<br/>Running 10000 tests.<br/>Χ² = 10.67.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 10.670.<br/>Based on this test, the C++ discrete_distribution is a good generator. |
 
+### Neha Deshpande's Homemade PRNG
+
+|  | 100 Numbers | 10,000 Numbers |
+| :---: | :---: | :---: |
+| Graph   | <img src="graphs/Neha_Deshpande's_Homemade_PRNG__tests-100__seed-1598787956.png" width="700"> |<img src="graphs/Neha_Deshpande's_Homemade_PRNG__tests-1000__seed-1598787960.png" width="700"> |
+| Statistics| Using Neha Deshpande's Homemade PRNG.<br/>The random number seed is 1598787956.<br/>Running 100 tests.<br/>Χ² = 4.4.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 4.400.<br/>Based on this test, Neha Deshpande's Homemade PRNG is a good generator. | Using Neha Deshpande's Homemade PRNG.<br/>The random number seed is 1598787960.<br/>Running 1000 tests.<br/>Χ² = 49.86.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 49.860.<br/>Based on this test, Neha Deshpande's Homemade PRNG is a bad generator. |
+
+### Crappy Homemade PRNG
+
+|  | 100 Numbers | 10,000 Numbers |
+| :---: | :---: | :---: |
+| Graph   | <img src="graphs/Neha_Deshpande's_Homemade_PRNG__tests-100__seed-1598787956.png" width="700"> |<img src="graphs/Neha_Deshpande's_Homemade_PRNG__tests-1000__seed-1598787960.png" width="700"> |
+| Statistics| Using Crappy Homemade PRNG.<br/>The random number seed is 1598788097.<br/>Running 100 tests.<br/>Χ² = 0.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 0.000.<br/>Based on this test, Crappy Homemade PRNG is a good generator. | Using Crappy Homemade PRNG.<br/>The random number seed is 1598788104.<br/>Running 1000 tests.<br/>Χ² = 0.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 0.000.<br/>Based on this test, Crappy Homemade PRNG is a good generator. |
+
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
 
 2. Compile ```PRNG.cpp```
 ```
-g++ PRNG.cpp -std=c++11 -I/usr/include/python2.7 -lpython2.7
+g++ *.cpp -std=c++11 -I/usr/include/python2.7 -lpython2.7
 ```
 
 3. Run the program with the following command line arguments
