@@ -65,15 +65,15 @@ After graphing the numbers, we can perform a statistical analysis of the results
 
 |  | 100 Numbers | 10,000 Numbers |
 | :---: | :---: | :---: |
-| Graph   | <img src="graphs/Neha_Deshpande's_Homemade_PRNG__tests-100__seed-1598787956.png" width="700"> |<img src="graphs/Neha_Deshpande's_Homemade_PRNG__tests-1000__seed-1598787960.png" width="700"> |
-| Statistics| Using Neha Deshpande's Homemade PRNG.<br/>The random number seed is 1598787956.<br/>Running 100 tests.<br/>Χ² = 4.4.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 4.400.<br/>Based on this test, Neha Deshpande's Homemade PRNG is a good generator. | Using Neha Deshpande's Homemade PRNG.<br/>The random number seed is 1598787960.<br/>Running 1000 tests.<br/>Χ² = 49.86.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 49.860.<br/>Based on this test, Neha Deshpande's Homemade PRNG is a bad generator. |
+| Graph   | <img src="graphs/Neha_Deshpande's_Homemade_PRNG__tests-100__seed-1598787956.png" width="700"> |<img src="graphs/Neha_Deshpande's_Homemade_PRNG__tests-10000__seed-1598788433.png" width="700"> |
+| Statistics| Using Neha Deshpande's Homemade PRNG.<br/>The random number seed is 1598787956.<br/>Running 100 tests.<br/>Χ² = 4.4.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 4.400.<br/>Based on this test, Neha Deshpande's Homemade PRNG is a good generator. | Using Neha Deshpande's Homemade PRNG.<br/>The random number seed is 1598788433.<br/>Running 10000 tests.<br/>Χ² = 541.232.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 541.232.<br/>Based on this test, Neha Deshpande's Homemade PRNG is a bad generator. |
 
 ### Crappy Homemade PRNG
 
 |  | 100 Numbers | 10,000 Numbers |
 | :---: | :---: | :---: |
-| Graph   | <img src="graphs/Crappy_Homemade_PRNG__tests-100__seed-1598788097.png" width="700"> |<img src="graphs/Crappy_Homemade_PRNG__tests-1000__seed-1598788104.png" width="700"> |
-| Statistics| Using Crappy Homemade PRNG.<br/>The random number seed is 1598788097.<br/>Running 100 tests.<br/>Χ² = 0.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 0.000.<br/>Based on this test, Crappy Homemade PRNG is a good generator. | Using Crappy Homemade PRNG.<br/>The random number seed is 1598788104.<br/>Running 1000 tests.<br/>Χ² = 0.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 0.000.<br/>Based on this test, Crappy Homemade PRNG is a good generator. |
+| Graph   | <img src="graphs/Crappy_Homemade_PRNG__tests-100__seed-1598788097.png" width="700"> |<img src="graphs/Crappy_Homemade_PRNG__tests-10000__seed-1598788427.png" width="700"> |
+| Statistics| Using Crappy Homemade PRNG.<br/>The random number seed is 1598788097.<br/>Running 100 tests.<br/>Χ² = 0.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 0.000.<br/>Based on this test, Crappy Homemade PRNG is a good generator. | Using Crappy Homemade PRNG.<br/>The random number seed is 1598788427.<br/>Running 10000 tests.<br/>Χ² = 0.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 0.000.<br/>Based on this test, Crappy Homemade PRNG is a good generator. |
 
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
