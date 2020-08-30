@@ -116,6 +116,10 @@ int main(int argc, char **argv) {
 	else if(argv[2] == std::string("piecewise_constant_distribution")){
 		calculate_using_piecewise_constant_distribution(counts,numTests,seed);
 	}
+	else{
+		std::cout << "Error: command line arguments\nUsage: ./a.out [numTests] [type] [seed]" << std::endl;
+		exit(1);
+	}
 	//print out data using the generator's official name
 	std::string official_name = PRNGnames[argv[2]];
 	std::cout << "Using " << official_name << ".\nThe random number seed is " << seed << ".\nRunning " << numTests << " tests." << std::endl;
