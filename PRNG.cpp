@@ -2,8 +2,8 @@
 
 
 #include "matplotlibcpp.h" // graphing
-#include "neha_generator.h" // homemade generators
-#include "homemade_generator.h"
+#include "homemade_generator.h" // homemade generators
+#include "neha_generator.h"
 #include "crappy_generator.h"
 #include <iostream>
 #include <iomanip>
@@ -69,7 +69,7 @@ void calculate_using_neha_generator(vector<int> &data, int numTests, unsigned in
 	}
 }
 
-// generate random numbers using the crappy, predictable generator and add them to the vector
+// generate random numbers using the crappy, cyclic, predictable generator and add them to the vector
 void calculate_using_crappy_generator(vector<int> &data, int numTests, unsigned int seed){
 	crappy_generator generator(seed);
 	for(int i = 0; i < numTests; i++){
@@ -77,14 +77,14 @@ void calculate_using_crappy_generator(vector<int> &data, int numTests, unsigned 
 	}
 }
 
-// generate random numbers using the discrete_distribution function and add them to the map
-void calculate_using_piecewise_constant_distribution(std::map<int,int> &counts, int numTests, unsigned int seed){
+// generate random numbers using the piecewise_constant_distribution generator and add them to the vector
+void calculate_using_piecewise_constant_distribution(vector<int> &data, int numTests, unsigned int seed){
 	std::default_random_engine generator( seed ); // set the seed value
 	std::array<double,11> intervals {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0}; 
  	std::array<double,10> weights {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }; //defines the distribution based on corresponding 'weights'
 	std::piecewise_constant_distribution<double> distribution (intervals.begin(),intervals.end(),weights.begin()); 
 	for(int i = 0; i < numTests; i++){
-		counts[distribution(generator)]++; // adds each random digit to the map
+		data[distribution(generator)]++; // adds each random digit to the vector
 	}
 }
 
@@ -101,14 +101,13 @@ int main(int argc, char **argv) {
 		{"discrete_distribution", make_pair("C++ discrete_distribution", calculate_using_discrete_distribution) },
 		{"neha_generator", make_pair("Neha Deshpande's Homemade PRNG", calculate_using_neha_generator) },
 		{"crappy_generator", make_pair("Crappy Homemade PRNG", calculate_using_crappy_generator) },
-    {"piecewise_constant_distribution", make_pair("C++ piecewise_constant_distribution", calculate_using_piecewise_constant_distribution) }
+    	{"piecewise_constant_distribution", make_pair("C++ piecewise_constant_distribution", calculate_using_piecewise_constant_distribution) }
 	};
 
 	//initialize the map values to 0
 	//the index is the generated number
 	//data[index] is the number of occurrences of that number
     vector<int> data(10, 0); 
-
 
 	//ensure we have the correct number of command line args
 	if(argc != 4){
@@ -133,7 +132,7 @@ int main(int argc, char **argv) {
 	// Function pointers allow dynamic data structures without needing to individually call each function.
 	PRNGs[argv[2]].second(data,numTests,seed);;
 
-  //print out data using the generator's official name
+  	//print out data using the generator's official name
 	string official_name = PRNGs[argv[2]].first;
 	cout << "Using " << official_name << ".\nThe random number seed is " << seed << ".\nRunning " << numTests << " tests." << endl;
 
