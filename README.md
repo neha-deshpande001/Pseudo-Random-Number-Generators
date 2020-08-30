@@ -75,6 +75,13 @@ After graphing the numbers, we can perform a statistical analysis of the results
 | Graph   | <img src="graphs/Crappy_Homemade_PRNG__tests-100__seed-1598788097.png" width="700"> |<img src="graphs/Crappy_Homemade_PRNG__tests-10000__seed-1598788427.png" width="700"> |
 | Statistics| Using Crappy Homemade PRNG.<br/>The random number seed is 1598788097.<br/>Running 100 tests.<br/>Χ² = 0.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 0.000.<br/>Based on this test, Crappy Homemade PRNG is a good generator. | Using Crappy Homemade PRNG.<br/>The random number seed is 1598788427.<br/>Running 10000 tests.<br/>Χ² = 0.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 0.000.<br/>Based on this test, Crappy Homemade PRNG is a good generator. |
 
+### C++ piecewise_constant_distribution
+
+|  | 100 Numbers | 10,000 Numbers |
+| :---: | :---: | :---: |
+| Graph   | <img src="graphs/C++_piecewise_constant_distribution__tests-100__seed-1598786124.png" width="700"> |<img src="graphs/C++_piecewise_constant_distribution__tests-1000__seed-1598786129.png" width="700"> |
+| Statistics| Using C++ piecewise_constant_distribution.<br/>The random number seed is 1598786124.<br/>Running 100 tests.<br/>Χ² = 7.6.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.600.<br/>Based on this test, the C++ piecewise_constant_distribution is a good generator. | Using C++ piecewise_constant_distribution.<br/>The random number seed is 1598786129.<br/>Running 1000 tests.<br/>Χ² = 6.4.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 6.400.<br/>Based on this test, the C++ piecewise_constant_distribution is a good generator. |
+
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
 
