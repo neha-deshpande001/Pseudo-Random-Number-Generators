@@ -51,18 +51,12 @@ void calculate_using_discrete_distribution(std::map<int,int> &counts, int numTes
 // generate random numbers using the discrete_distribution function and add them to the map
 void calculate_using_piecewise_constant_distribution(std::map<int,int> &counts, int numTests, unsigned int seed){
 	std::default_random_engine generator( seed ); // set the seed value
-	std::array<double,6> intervals {0.0, 2.0, 4.0, 6.0, 8.0, 10.0}; 
- 	std::array<double,5> weights {1.0, 1.0, 1.0, 1.0, 1.0, }; //defines the distribution based on corresponding 'weights'
+	std::array<double,11> intervals {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0}; 
+ 	std::array<double,10> weights {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }; //defines the distribution based on corresponding 'weights'
 	std::piecewise_constant_distribution<double> distribution (intervals.begin(),intervals.end(),weights.begin()); 
 	for(int i = 0; i < numTests; i++){
 		counts[distribution(generator)]++; // adds each random digit to the map
 	}
-	//displays distribution because I was unable to graph it
-	/*std::cout << "a piecewise_constant_distribution:" << std::endl;
-	int k =0;
-	for (std::map<int,int>::iterator i = counts.begin(); i != counts.end(); ++i){
-		std::cout<<k<< "-"<< (k+1)<<" "<<i->second<<std::endl;
-		k++;}*/
 }
 
 
@@ -135,7 +129,7 @@ int main(int argc, char **argv) {
 
 	// PLOT STYLING HERE
 
-   /* plt::figure_size(1200, 780); // size of the graph
+    plt::figure_size(1200, 780); // size of the graph
 
     plt::bar(data); //we want to plot a bar graph with the random number data
 
@@ -172,7 +166,7 @@ int main(int argc, char **argv) {
     std::map<std::string,double> adjust_spacing;    // styling the spacing
     adjust_spacing["top"]=0.89;
 	plt::subplots_adjust(adjust_spacing);
-*/
+
 
 
 	// CALCULATE & PRINT STATISTICS HERE
@@ -194,8 +188,8 @@ int main(int argc, char **argv) {
 
 	//SAVE FILE
 	//save the graph to a file (can be pdf, png, jpg, etc.)
-	//std::replace( official_name.begin(), official_name.end(), ' ', '_');
-  //  plt::save(official_name + "__tests-" + std::to_string(numTests) + "__seed-" + std::to_string(seed) + ".png"); // come up with a better name than this
+	std::replace( official_name.begin(), official_name.end(), ' ', '_');
+    plt::save(official_name + "__tests-" + std::to_string(numTests) + "__seed-" + std::to_string(seed) + ".png"); // come up with a better name than this
 
     return (0);
 }
