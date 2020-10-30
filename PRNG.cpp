@@ -5,6 +5,7 @@
 #include "homemade_generator.h" // homemade generators
 #include "neha_generator.h"
 #include "crappy_generator.h"
+#include "lin_con_gen.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -88,6 +89,13 @@ void calculate_using_piecewise_constant_distribution(vector<int> &data, int numT
 	}
 }
 
+// generate random numbers using java.util.Random's linear congruential generator and add them to the vector
+void calculate_using_java_util_Random(vector<int> &data, int numTests, unsigned int seed){
+	lin_con_gen generator(seed, 25214903917, 11, pow(2,48));
+	for(int i = 0; i < numTests; i++){
+		data[generator.random_number()]++; // adds each random digit to the vector
+	}
+}
 
 int main(int argc, char **argv) {
 
@@ -101,7 +109,9 @@ int main(int argc, char **argv) {
 		{"discrete_distribution", make_pair("C++ discrete_distribution", calculate_using_discrete_distribution) },
 		{"neha_generator", make_pair("Neha Deshpande's Homemade PRNG", calculate_using_neha_generator) },
 		{"crappy_generator", make_pair("Crappy Homemade PRNG", calculate_using_crappy_generator) },
-    	{"piecewise_constant_distribution", make_pair("C++ piecewise_constant_distribution", calculate_using_piecewise_constant_distribution) }
+		{"piecewise_constant_distribution", make_pair("C++ piecewise_constant_distribution", calculate_using_piecewise_constant_distribution) },
+		{"java", make_pair("java.util.Random", calculate_using_java_util_Random) }
+
 	};
 
 	//initialize the map values to 0
@@ -136,7 +146,7 @@ int main(int argc, char **argv) {
 	string official_name = PRNGs[argv[2]].first;
 	cout << "Using " << official_name << ".\nThe random number seed is " << seed << ".\nRunning " << numTests << " tests." << endl;
 
-
+/*
 
 	// PLOT STYLING HERE
 	// using the data vector
@@ -178,7 +188,7 @@ int main(int argc, char **argv) {
     map<string,double> adjust_spacing;    // styling the spacing
     adjust_spacing["top"]=0.89;
 	plt::subplots_adjust(adjust_spacing);
-
+*/
 
 
 	// CALCULATE & PRINT STATISTICS HERE
@@ -197,11 +207,11 @@ int main(int argc, char **argv) {
 	cout << "This generator's \u03A7\u00B2 is " << fixed << chi_squared << "." << endl;
 	cout << "Based on this test, " << official_name << " is a " << good_or_bad << " generator." << endl;
 
-
+/*
 	//SAVE FILE
 	//save the graph to a file (can be pdf, png, jpg, etc.)
 	replace( official_name.begin(), official_name.end(), ' ', '_');
     plt::save(official_name + "__tests-" + to_string(numTests) + "__seed-" + to_string(seed) + ".png"); // come up with a better name than this
-
+*/
     return (0);
 }
