@@ -113,6 +113,23 @@ where:
   - "time"
   - an integer number
 
+
+If you want to analyze custom linear congruential generator constants, run the program with the following command line arguments
+```
+./a.out [numTests] custom_lin_con [seed] [a] [c] [m]
+```
+where:
+- [numTests] is an integer number of tests to run
+- [seed] is the initial seed to use in the generator. The seed can be:
+  - "time"
+  - an integer number
+- [a] is the multiplier value, where a is greater than 0 and less than m.
+- [c] is the increment value, where c is greater than or equal to 0 and less than m.
+- [m] is the modulus value, where m is greater than 0.
+
+For more information about these constants, look at the Resources section.
+
+
 ## Resources
 - matplotlib-cpp - https://github.com/lava/matplotlib-cpp
 - Testing a Random Number Generator - https://www.johndcook.com/Beautiful_Testing_ch10.pdf

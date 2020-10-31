@@ -113,6 +113,28 @@ void calculate_using_carbon(vector<int> &data, int numTests, unsigned int seed){
 	}
 }
 
+// generate random numbers using a custom linear congruential generator and add them to the vector
+void calculate_using_custom(vector<int> &data, int numTests, unsigned int seed, long a, long c, long m){
+	lin_con_gen generator(seed, a, c, m);
+	for(int i = 0; i < numTests; i++){
+		data[generator.random_number()]++; // adds each random digit to the vector
+	}
+}
+
+// prints a command line error message, then exits the program
+void command_line_error(){
+	cout << "Error: command line arguments\nUsage: ./a.out [numTests] [type] [seed] OR ./a.out [numTests] custom_lin_con [seed] [a] [c] [m]" << endl;
+	exit(1);
+}
+
+// from https://stackoverflow.com/questions/8888748/how-to-check-if-given-c-string-or-char-contains-only-digits
+bool ensure_num(const std::string &str) {
+	if (!(str.find_first_not_of("0123456789") == std::string::npos)){
+		command_line_error();
+	}
+    return true;
+}
+
 int main(int argc, char **argv) {
 
 	// unordered map with command line argument and the official name for printing statistics
@@ -137,12 +159,12 @@ int main(int argc, char **argv) {
     vector<int> data(10, 0); 
 
 	//ensure we have the correct number of command line args
-	if(argc != 4){
-		cout << "Error: command line arguments\nUsage: ./a.out [numTests] [type] [seed]" << endl;
-		exit(1);
+	if(argc != 4 && argc != 7){
+		command_line_error();
 	}
 	
 	// PARSE ARGUMENTS & CALCULATE DATA
+	ensure_num(argv[1]);
 	int numTests = atoi(argv[1]);
 	unsigned int seed;
 
@@ -150,20 +172,37 @@ int main(int argc, char **argv) {
 		seed = time(NULL);
 	}
 	else{
+		ensure_num(argv[3]);
 		seed = atoi(argv[3]);
 	}
 
-	//call the function to calculate random numbers
-	// argv[2] is the unofficial name, PRNGs[argv[2]] is the pair for that PRNG, and .second is the function pointer in the pair.
-	// The three arguments to the function are data, numTests, and seed.
-	// Function pointers allow dynamic data structures without needing to individually call each function.
-	PRNGs[argv[2]].second(data,numTests,seed);;
+	string official_name;
+	//check command line arguments
+	if(argc == 7){ //linear congruential generator with custom a, c, and m values
+		if(argv[2] != string("custom_lin_con")){ // cannot have a, c, and m values for other generators
+			command_line_error();
+		}
+		official_name = "a Custom Linear Congruental Generator";
+		ensure_num(argv[4]);
+		ensure_num(argv[5]);
+		ensure_num(argv[6]);
+		calculate_using_custom(data,numTests,seed,atoi(argv[4]),atoi(argv[5]),atoi(argv[6]));
+	}
+	else{
+		//call the function to calculate random numbers
+		// argv[2] is the unofficial name, PRNGs[argv[2]] is the pair for that PRNG, and .second is the function pointer in the pair.
+		// The three arguments to the function are data, numTests, and seed.
+		// Function pointers allow dynamic data structures without needing to individually call each function.
+		if (PRNGs.find(argv[2]) == PRNGs.end()) {
+			command_line_error();
+		}
+		PRNGs[argv[2]].second(data,numTests,seed);;
+		official_name = PRNGs[argv[2]].first;
+	}
 
   	//print out data using the generator's official name
-	string official_name = PRNGs[argv[2]].first;
 	cout << "Using " << official_name << ".\nThe random number seed is " << seed << ".\nRunning " << numTests << " tests." << endl;
 
-/*
 
 	// PLOT STYLING HERE
 	// using the data vector
@@ -205,7 +244,6 @@ int main(int argc, char **argv) {
     map<string,double> adjust_spacing;    // styling the spacing
     adjust_spacing["top"]=0.89;
 	plt::subplots_adjust(adjust_spacing);
-*/
 
 
 	// CALCULATE & PRINT STATISTICS HERE
@@ -224,11 +262,11 @@ int main(int argc, char **argv) {
 	cout << "This generator's \u03A7\u00B2 is " << fixed << chi_squared << "." << endl;
 	cout << "Based on this test, " << official_name << " is a " << good_or_bad << " generator." << endl;
 
-/*
+
 	//SAVE FILE
 	//save the graph to a file (can be pdf, png, jpg, etc.)
 	replace( official_name.begin(), official_name.end(), ' ', '_');
     plt::save(official_name + "__tests-" + to_string(numTests) + "__seed-" + to_string(seed) + ".png"); // come up with a better name than this
-*/
+
     return (0);
 }
