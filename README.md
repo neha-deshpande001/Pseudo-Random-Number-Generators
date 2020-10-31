@@ -82,6 +82,9 @@ After graphing the numbers, we can perform a statistical analysis of the results
 | Graph   | <img src="graphs/C++_piecewise_constant_distribution__tests-100__seed-1598786124.png" width="700"> |<img src="graphs/C++_piecewise_constant_distribution__tests-10000__seed-1598789615.png" width="700"> |
 | Statistics| Using C++ piecewise_constant_distribution.<br/>The random number seed is 1598786124.<br/>Running 100 tests.<br/>Χ² = 7.6.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 7.600.<br/>Based on this test, the C++ piecewise_constant_distribution is a good generator. | Using C++ piecewise_constant_distribution.<br/>The random number seed is 1598789615.<br/>Running 10000 tests.<br/>Χ² = 4.696.<br/>A good generator's Χ² should be below 16.919.<br/>This generator's Χ² is 4.696.<br/>Based on this test, C++ piecewise_constant_distribution is a good generator. |
 
+### Linear Congruential Generators coming soon!
+
+
 ## Installation and Running Instructions
 1. Download and unzip [this repository](https://github.com/neha-deshpande001/Pseudo-Random-Number-Generators/archive/master.zip)
 
@@ -96,10 +99,16 @@ g++ *.cpp -std=c++11 -I/usr/include/python2.7 -lpython2.7
 ```
 where:
 - [numTests] is an integer number of tests to run
-- [type] is the type of PRNG to use to perform those tests. The types that are supported as of 4/34/2020 are:
+- [type] is the type of PRNG to use to perform those tests. The types that are supported as of 10/30/2020 are:
   - "rand"
   - "uniform_int_distribution"
   - "discrete_distribution"
+  - "neha_generator"
+  - "crappy_generator"
+  - "piecewise_constant_distribution"
+  - "java"
+  - "visual_basic"
+  - "carbon"
 - [seed] is the initial seed to use in the generator. The seed can be:
   - "time"
   - an integer number
