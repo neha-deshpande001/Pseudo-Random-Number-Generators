@@ -97,6 +97,22 @@ void calculate_using_java_util_Random(vector<int> &data, int numTests, unsigned 
 	}
 }
 
+// generate random numbers using java.util.Random's linear congruential generator and add them to the vector
+void calculate_using_visual_basic(vector<int> &data, int numTests, unsigned int seed){
+	lin_con_gen generator(seed, 1140671485, 12820163, pow(2,24));
+	for(int i = 0; i < numTests; i++){
+		data[generator.random_number()]++; // adds each random digit to the vector
+	}
+}
+
+// generate random numbers using java.util.Random's linear congruential generator and add them to the vector
+void calculate_using_carbon(vector<int> &data, int numTests, unsigned int seed){
+	lin_con_gen generator(seed, 16807, 0, pow(2,31) - 1);
+	for(int i = 0; i < numTests; i++){
+		data[generator.random_number()]++; // adds each random digit to the vector
+	}
+}
+
 int main(int argc, char **argv) {
 
 	// unordered map with command line argument and the official name for printing statistics
@@ -110,8 +126,9 @@ int main(int argc, char **argv) {
 		{"neha_generator", make_pair("Neha Deshpande's Homemade PRNG", calculate_using_neha_generator) },
 		{"crappy_generator", make_pair("Crappy Homemade PRNG", calculate_using_crappy_generator) },
 		{"piecewise_constant_distribution", make_pair("C++ piecewise_constant_distribution", calculate_using_piecewise_constant_distribution) },
-		{"java", make_pair("java.util.Random", calculate_using_java_util_Random) }
-
+		{"java", make_pair("java.util.Random", calculate_using_java_util_Random) },
+		{"visual_basic", make_pair("Microsoft Visual Basic (6 and earlier)", calculate_using_visual_basic) },
+		{"carbon", make_pair("Apple Carbon", calculate_using_carbon) }
 	};
 
 	//initialize the map values to 0
